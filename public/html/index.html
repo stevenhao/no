@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dumb Chess</title>
+
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="socket.io-client/socket.io.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.js"></script>
+    <script src="jGrowl/jquery.jgrowl.min.js"></script>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.min.js"></script>
+    <script src="babel//browser.min.js"></script>
+    <script>
+      window.print = console.log.bind(console);
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="jGrowl/jquery.jgrowl.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div id="content"> </div>
+
+    <script type="text/babel" src="js/Message.js"></script>
+    <script type="text/babel" src="js/ChessBoard.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/Chessboard.css" />
+
+
+    <script type="text/babel">
+      var mountNode = $('#content')[0];
+
+      var everything = (
+        <div>
+          <div className="container">
+            <Message>
+              Welcome to Dumb Chess beta! Let me know if you find any bugs -- steven
+            </Message>
+          </div>
+
+          <div className="container">
+            <div className="col-md-6">
+              <input type="text" id="dummy-input" hidden/>
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                  <h3 className="panel-title">Game</h3>
+                </div>
+                <div className="panel-body">
+                  <Chessboard/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+      ReactDOM.render(everything, mountNode);
+
+    </script>
+  </body>
+</html>
