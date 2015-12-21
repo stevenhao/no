@@ -1,26 +1,36 @@
-var darkColor = 'blue';
-var lightColor = 'white';
 var Square = React.createClass({
   render: function() {
     var x = this.props.x, y = this.props.y, val = this.props.val;
     var piece = val.piece, color = val.squareColor;
-    print('rendering', this.props);
+    var divStyle = {
+      position: 'absolute',
+      left: (x * 12.5) + '%',
+      top: (y * 12.5) + '%',
+    }
+    if (piece != '') {
+      divStyle.backgroundImage = 'url(/images/' + piece + '.png)';
+    }
     return (
-      <div style={{
-          position: 'absolute',
-          left: (x * 12.5) + '%',
-          top: (y * 12.5) + '%',
-          width: '12.5%',
-          height: '12.5%',
-        }}
-      >
-      </div>
+      <div 
+        style={divStyle} 
+        className='square'
+      />
     )
   }
 });
 
+var initialSetup = [
+  ['bR', 'bN', 'bB', 'bQ', 'bK', 'bB', 'bN', 'bR'],
+  ['bP', 'bP', 'bP', 'bP', 'bP', 'bP', 'bP', 'bP'],  
+  ['', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', ''],
+  ['wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP'],  
+  ['wR', 'wN', 'wB', 'wQ', 'wK', 'wB', 'wN', 'wR'],
+];
 window.Chessboard = React.createClass({
-  /* state: {
+  /* state = {
     squares = [square = {
       piece: {pieceType, color} / null, 
       squareColor: light/dark,
@@ -33,8 +43,8 @@ window.Chessboard = React.createClass({
     for (var i = 0; i < 8; ++i) {
       for (var j = 0; j < 8; ++j) {
         squares.push({
-          piece: null, 
-          squareColor: (i + j) % 2 == 1 ? 'black': 'white'
+          piece: initialSetup[i][j],
+          squareColor: (i + j) % 2 == 1 ? 'black': 'white',
         });
       }
     }
@@ -52,8 +62,8 @@ window.Chessboard = React.createClass({
           this.state.squares.map(function(square, i) {
             return (
               <Square
-                x={Math.floor(i/8)}
-                y={i%8}
+                x={i%8}
+                y={Math.floor(i/8)}
                 val={square}
                 key={i}
               />
