@@ -1,5 +1,5 @@
 .board{          
-  width:100%;
+  width:512px;
   position:relative;
   background-image:url('/images/brown.png');
   background-size:cover;
@@ -14,6 +14,9 @@
   height:12.5%;
   background-size:cover;
 }
-.square.wp{
-
+.square.selected{
+  background-color:rgba(20,85,30,0.5)
+}
+.square.move-dest{
+  background: radial-gradient(rgba(20,85,30,0.3) 17%,#208530 0,rgba(0,0,0,0.3) 0,rgba(0,0,0,0) 0);
 }
